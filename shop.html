@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Матч найден</title>
+    <style>
+        body { background: #0f0f12; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        h1 { color: #4CAF50; }
+        .host-box { background: #FF5722; padding: 15px; border-radius: 8px; font-size: 20px; font-weight: bold; margin: 20px auto; max-width: 400px; }
+        .maps { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+        .map { background: #333; padding: 20px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
+        .map:hover { border-color: #FF5722; }
+    </style>
+</head>
+<body>
+    <h1>МАТЧ НАЙДЕН!</h1>
+    <div class="host-box">👑 Хост матча: <br> {{ host }}</div>
+    <h3>Выбивание карт (Veto)</h3>
+    <div class="maps">
+        {% for map in maps %}
+            <div class="map">{{ map }}</div>
+        {% endfor %}
+    </div>
+    <a href="/" style="color:#FF5722; display:block; margin-top:30px;">← На главную</a>
+</body>
+</html>
