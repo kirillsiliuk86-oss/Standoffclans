@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Standoff 2 | Clan Wars</title>
+    <style>
+        body { background: #0f0f12; color: #e0e0e0; font-family: sans-serif; text-align: center; padding: 20px; margin: 0; }
+        h1 { color: #FF5722; text-transform: uppercase; text-shadow: 0 0 10px rgba(255,87,34,0.5); }
+        .container { max-width: 500px; margin: 0 auto; }
+        .card { background: #1A1A1E; padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 4px solid #FF5722; text-align: left; }
+        .input-group input { width: 100%; box-sizing: border-box; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #25252b; color: white; margin-bottom: 10px; }
+        button { width: 100%; background: #FF5722; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .nav-btn { display: block; background: #333; color: white; padding: 12px; border-radius: 8px; text-decoration: none; margin-bottom: 10px; font-weight: bold; }
+        .nav-btn:hover { background: #FF5722; }
+        ul { list-style: none; padding: 0; }
+        li { background: #25252b; padding: 12px; margin-bottom: 8px; border-radius: 8px; display: flex; justify-content: space-between; }
+        .footer { margin-top: 30px; font-size: 12px; color: #888; }
+        a { color: #FF5722; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Clan Wars</h1>
+        
+        <a href="/shop" class="nav-btn">🛒 Магазин украшений</a>
+        <a href="/find_match" class="nav-btn">⚔️ Найти матч (Тест)</a>
+
+        <div class="card">
+            <h3>Регистрация</h3>
+            <form action="/register" method="post">
+                <div class="input-group"><input type="text" name="nickname" placeholder="Ник в игре" required></div>
+                <div class="input-group"><input type="text" name="game_id" placeholder="ID из Standoff 2" required></div>
+                <div class="input-group"><input type="email" name="email" placeholder="Email" required></div>
+                <div class="input-group"><input type="password" name="password" placeholder="Пароль" required></div>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Создать клан</h3>
+            <form action="/create_clan" method="post">
+                <div class="input-group"><input type="text" name="name" placeholder="Название клана" required></div>
+                <div class="input-group"><input type="text" name="tag" placeholder="Тег (например, ALPHA)" required></div>
+                <button type="submit">Создать клан</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Таблица лидеров</h3>
+            <ul>
+                {% for clan in clans %}
+                    <li><span><strong style="color:#FF5722;">[{{ clan.tag }}]</strong> {{ clan.name }}</span> <span>{{ clan.rating }} 🏆</span></li>
+                {% else %}
+                    <li style="justify-content:center;">Пока нет кланов</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="footer">
+            <a href="/terms">Правила</a> | <a href="/privacy">Конфиденциальность</a> | <a href="/requisites">Реквизиты и Оплата</a>
+        </div>
+    </div>
+</body>
+</html>
