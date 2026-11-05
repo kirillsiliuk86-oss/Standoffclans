@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Standoff 2 Clans</title>
+    <style>
+        body { background: #121212; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        h1 { color: #FF5722; }
+        input { padding: 10px; margin: 5px; border-radius: 5px; border: none; width: 80%; background: #333; color: white; }
+        button { background: #FF5722; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .card { background: #1E1E1E; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #FF5722; text-align: left; }
+        a { color: #FF5722; }
+    </style>
+</head>
+<body>
+    <h1>CLAN WARS</h1>
+    
+    <div class="card">
+        <h3>Регистрация</h3>
+        <form action="/register" method="post">
+            <input type="text" name="nickname" placeholder="Ник в игре" required><br>
+            <input type="text" name="game_id" placeholder="ID из игры" required><br>
+            <input type="email" name="email" placeholder="Ваша почта" required><br>
+            <input type="password" name="password" placeholder="Пароль" required><br>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>Создать клан</h3>
+        <form action="/create_clan" method="post">
+            <input type="text" name="name" placeholder="Название клана" required><br>
+            <input type="text" name="tag" placeholder="Тег (например, ALPHA)" required><br>
+            <button type="submit">Создать</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>Список кланов</h3>
+        <ul style="list-style:none; padding:0;">
+            {% for clan in clans %}
+                <li>{{ clan.tag }} | {{ clan.name }} (Рейтинг: {{ clan.rating }})</li>
+            {% else %}
+                <li>Пока нет кланов...</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div style="margin-top: 40px; font-size: 12px; color: #888;">
+        Нажимая кнопку «Зарегистрироваться», вы соглашаетесь с 
+        <a href="/terms">Пользовательским соглашением</a> и 
+        <a href="/privacy">Политикой конфиденциальности</a>.
+    </div>
+</body>
+</html>
