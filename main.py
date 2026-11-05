@@ -36,7 +36,7 @@ class Clan(Base):
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-templates = Jinja2Templates(directory=".")
+templates = Jinja2Templates(directory=os.path.dirname(os.path.abspath(__file__)))
 
 def get_db():
     db = SessionLocal()
